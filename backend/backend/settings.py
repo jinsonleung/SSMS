@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',   # rest framework
     'corsheaders',  # 跨域
     'persons',  # 添加app
+    'articles',  # 添加app
 ]
 
 MIDDLEWARE = [
