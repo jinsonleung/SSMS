@@ -50,14 +50,21 @@ def show_persons(request):
 
 
 # ===使用第2种方法===
-# 仅接收json格式的post请求
+# 新增,仅接收json格式的post请求
 @require_http_methods(['POST'])
-def add_person_2(request):
-    response = {'msg': 'post success'}
+def add_person_3(request):
+    response = {}
     try:
         res = json.loads(request.body)  # 加载数据
         print('rest====', res)
         print('person_name:', res['person_name'])
+        person = Person(
+            person_name=res['person_name'],
+            deposit=res['deposit']
+        )
+        person.save()   # 保存
+        response['msg'] = 'success'
+        response['error_num'] = 0
     except Exception as e:
         response = {'error', str(e)}
     return JsonResponse(response)
